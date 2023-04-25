@@ -8,12 +8,14 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Main from "./pages/Main";
 
 //router
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <h1>home</h1>,
+    element: <Main />,
+    errorElement: <p>error</p>,
   },
   {
     path: "/bucket",
