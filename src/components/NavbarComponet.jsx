@@ -7,7 +7,7 @@ function NavbarComponent() {
   return (
     <div>
       <BrandLogo />
-      <BucketNavbar />
+      {/* <BucketNavbar /> */}
     </div>
   );
 }

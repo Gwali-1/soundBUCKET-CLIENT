@@ -13,7 +13,7 @@ function BucketNavbar() {
     <div className="container-md border ">
       <Box
         sx={{
-          width: 500,
+          width: "100%",
           border: "1px solid rgba(255, 255, 255, 0.7)",
           margin: "0px auto 0px auto",
         }}
