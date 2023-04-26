@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "./pages/Main";
+import Splash from "./pages/splash";
 
 //router
 const router = createBrowserRouter([
@@ -16,6 +17,20 @@ const router = createBrowserRouter([
     path: "/",
     element: <Main />,
     errorElement: <p>error</p>,
+    children: [
+      {
+        index: true,
+        element: <Splash />,
+      },
+      {
+        path: "login",
+        element: <p>login</p>,
+      },
+      {
+        path: "signup",
+        element: <p>signup</p>,
+      },
+    ],
   },
   {
     path: "/bucket",
