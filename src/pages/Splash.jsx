@@ -8,7 +8,6 @@ import NavbarComponent from "../components/NavbarComponet";
 function Splash() {
   return (
     <div className="text-center">
-      <NavbarComponent />
       <img className=" w-50 mt-5" src={splashImage} alt="" fluid />
       <Typography
         variant="h2"

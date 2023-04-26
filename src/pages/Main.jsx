@@ -7,6 +7,7 @@ function Main() {
   return (
     <>
       <div className="container">
+        <NavbarComponent />
         <Outlet />
       </div>
     </>
