@@ -46,40 +46,42 @@ function Login() {
             margin: "40px 0px 0px 0px",
           }}
         >
-          <FormControl
-            sx={{ m: 1, margin: "0px auto 30px auto", width: "80%" }}
-          >
-            <TextField
-              id="standard-basic"
-              label="Username"
-              name="username"
+          <Form method="post">
+            <FormControl
+              sx={{ m: 1, margin: "0px auto 30px auto", width: "80%" }}
+            >
+              <TextField
+                id="standard-basic"
+                label="Username"
+                name="username"
+                variant="standard"
+              />
+            </FormControl>
+            <FormControl
+              sx={{ m: 1, margin: "0px auto 0px auto", width: "80%" }}
               variant="standard"
-            />
-          </FormControl>
-          <FormControl
-            sx={{ m: 1, margin: "0px auto 0px auto", width: "80%" }}
-            variant="standard"
-          >
-            <InputLabel htmlFor="standard-adornment-password">
-              Password
-            </InputLabel>
-            <Input
-              id="standard-adornment-password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
+            >
+              <InputLabel htmlFor="standard-adornment-password">
+                Password
+              </InputLabel>
+              <Input
+                id="standard-adornment-password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </Form>
         </Stack>
       </div>
     </div>
