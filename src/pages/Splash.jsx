@@ -8,7 +8,7 @@ import NavbarComponent from "../components/NavbarComponet";
 function Splash() {
   return (
     <div className="text-center">
-      <img className=" w-50 mt-5" src={splashImage} alt="" fluid />
+      <img className=" w-50 mt-5" src={splashImage} alt="" />
       <Typography
         variant="h2"
         component="h3"
@@ -19,7 +19,7 @@ function Splash() {
           fontFamily: "Source Serif Pro",
         }}
       >
-        Bucket For The People And By The People
+        Playlist For The People And By The People
       </Typography>
       <p className="mt-3">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima

@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "./pages/Main";
 import Splash from "./pages/splash";
+import Login from "./pages/Login";
 
 //router
 const router = createBrowserRouter([
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <p>login</p>,
+        element: <Login />,
       },
       {
         path: "signup",
