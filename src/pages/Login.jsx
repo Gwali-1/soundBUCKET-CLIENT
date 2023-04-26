@@ -15,11 +15,13 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Stack from "@mui/material/Stack";
 import loginSvg from "../assets/DumpingDoodle.svg";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 function Login() {
+  //state
   const [showPassword, setShowPassword] = useState(false);
+  //functions
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -81,6 +83,18 @@ function Login() {
                 }
               />
             </FormControl>
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              width="70px"
+              sx={{ bgcolor: "#767676", mt: 2 }}
+              onClick={() => {
+                console.log("clicked");
+              }}
+            >
+              Login
+            </Button>
           </Form>
         </Stack>
       </div>
