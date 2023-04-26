@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import NavbarComponent from "../components/NavbarComponet";
 
 function Main() {
   const [value, setValue] = React.useState(0);

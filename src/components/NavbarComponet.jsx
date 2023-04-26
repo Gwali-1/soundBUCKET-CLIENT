@@ -18,13 +18,20 @@ function NavbarComponent() {
   return (
     <div>
       <Navbar>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="/" className="text-success">
+          soundBUCKET
+        </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="Login">Home</Nav.Link>
-          <Nav.Link href="Create Accout">Features</Nav.Link>
+          <Nav.Link href="Login" className="text-secondary">
+            login
+          </Nav.Link>
+
+          <Nav.Link href="signup" className="text-secondary">
+            Create Account
+          </Nav.Link>
         </Nav>
       </Navbar>
-      <div className="container-md border ">
+      {/* <div className="container-md border ">
         <Box
           sx={{
             width: 500,
@@ -45,7 +52,7 @@ function NavbarComponent() {
             <BottomNavigationAction label="Add song" icon={<AddIcon />} />
           </BottomNavigation>
         </Box>
-      </div>
+      </div> */}
     </div>
   );
 }

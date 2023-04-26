@@ -3,12 +3,12 @@ import splashImage from "../assets/DancingDoodle.svg";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import NavbarComponent from "../components/NavbarComponet";
 
 function Splash() {
   return (
     <div className="text-center">
-      <Navbar />
+      <NavbarComponent />
       <img className=" w-50 mt-5" src={splashImage} alt="" fluid />
       <Typography
         variant="h2"
