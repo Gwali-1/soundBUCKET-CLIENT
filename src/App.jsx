@@ -55,6 +55,7 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <RouterProvider router={router} />
+      <ToastContainer />
       <CssBaseline />
     </ThemeProvider>
   );

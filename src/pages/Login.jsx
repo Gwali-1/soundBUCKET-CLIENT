@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, useFetcher } from "react-router-dom";
+import { Form, useFetcher, NavLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -106,6 +106,20 @@ function Login() {
               Login
             </Button>
           </fetcher.Form>
+
+          <p style={{ marginTop: 10 }}>
+            Don't have an account?{" "}
+            <NavLink
+              to="/signup"
+              style={{
+                textDecoration: "None",
+                color: "#009473",
+                fontSize: "17px",
+              }}
+            >
+              Sign Up
+            </NavLink>
+          </p>
         </Stack>
       </div>
     </div>

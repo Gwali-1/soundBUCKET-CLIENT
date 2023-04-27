@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-router-dom";
+import { Form, redirect, NavLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -16,12 +16,12 @@ import Stack from "@mui/material/Stack";
 import signupSvg from "../assets/MeditatingDoodle.svg";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
+import { toast } from "react-toastify";
 //action
 export const signupAction = async ({ request }) => {
   const form = await request.formData();
   const formData = Object.fromEntries(form);
-  console.log(JSON.stringify(formData));
+  //creatE user account
   fetch("http://127.0.0.1:8000/user/create", {
     method: "POST",
     headers: {
@@ -30,18 +30,31 @@ export const signupAction = async ({ request }) => {
     body: JSON.stringify(formData),
   })
     .then((response) => {
-      console.log(response);
+      if (!response.ok) {
+        throw new Error("invalid credentials");
+      }
       return response.json();
     })
-    .then((result) => {
-      console.log(result);
+    .then((responseData) => {
+      toast.success("Account Created");
+      return redirect("/login");
     })
-    .catch((err) => console.log(err));
-  return null;
+    .catch((err) => {
+      console.log(err);
+      toast.warning("Account Was Not Created");
+    });
+  return redirect("/login");
 };
+
 function Signup() {
   //states
   const [showPassword, setShowPassword] = useState(false);
+  const [credentials, setCredentials] = useState({
+    email: null,
+    username: null,
+    password: null,
+  });
+
   //functions
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
@@ -152,6 +165,19 @@ function Signup() {
               SignUp
             </Button>
           </Form>
+          <p style={{ marginTop: 10 }}>
+            Already have an account?{" "}
+            <NavLink
+              to="/login"
+              style={{
+                textDecoration: "None",
+                color: "#009473",
+                fontSize: "17px",
+              }}
+            >
+              Login
+            </NavLink>
+          </p>
         </Stack>
       </div>
     </div>

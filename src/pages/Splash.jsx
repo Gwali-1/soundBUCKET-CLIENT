@@ -15,7 +15,6 @@ function Splash() {
   const { username } = useLoaderData();
   return (
     <div className="text-center">
-      {username && <p>Logged in</p>}
       <img className=" w-50 mt-5" src={splashImage} alt="" />
       <Typography
         variant="h2"
