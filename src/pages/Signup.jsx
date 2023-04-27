@@ -21,7 +21,22 @@ import Button from "@mui/material/Button";
 export const signupAction = async ({ request }) => {
   const form = await request.formData();
   const formData = Object.fromEntries(form);
-  console.log(formData);
+  console.log(JSON.stringify(formData));
+  fetch("http://127.0.0.1:8000/user/create", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => console.log(err));
   return null;
 };
 function Signup() {
@@ -110,7 +125,7 @@ function Signup() {
               <Input
                 id="standard-adornment-password2"
                 type={showPassword ? "text" : "password"}
-                name="confirm-password"
+                name="confirm_password"
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
