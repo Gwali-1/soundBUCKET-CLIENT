@@ -9,28 +9,32 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "./pages/Main";
-import Splash from "./pages/splash";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Splash, { MainLoader } from "./pages/splash";
+import Login, { loginAction } from "./pages/Login";
+import Signup, { signupAction } from "./pages/Signup";
+import Error from "./pages/Error";
 
 //router
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement: <p>error</p>,
+    errorElement: <Error />,
     children: [
       {
         index: true,
         element: <Splash />,
+        loader: MainLoader,
       },
       {
         path: "login",
         element: <Login />,
+        action: loginAction,
       },
       {
         path: "signup",
         element: <Signup />,
+        action: signupAction,
       },
     ],
   },

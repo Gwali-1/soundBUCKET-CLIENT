@@ -17,6 +17,13 @@ import signupSvg from "../assets/MeditatingDoodle.svg";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
+//action
+export const signupAction = async ({ request }) => {
+  const form = await request.formData();
+  const formData = Object.fromEntries(form);
+  console.log(formData);
+  return null;
+};
 function Signup() {
   //states
   const [showPassword, setShowPassword] = useState(false);

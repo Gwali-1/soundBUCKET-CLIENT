@@ -3,11 +3,19 @@ import splashImage from "../assets/DancingDoodle.svg";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import NavbarComponent from "../components/NavbarComponet";
 
+export const MainLoader = () => {
+  const username = "l";
+  return { username };
+};
+
 function Splash() {
+  const { username } = useLoaderData();
   return (
     <div className="text-center">
+      {username && <p>Logged in</p>}
       <img className=" w-50 mt-5" src={splashImage} alt="" />
       <Typography
         variant="h2"
@@ -27,7 +35,6 @@ function Splash() {
         molestiae pariatur repellendus, itaque tenetur facere voluptatum
         necessitatibus quam quas fugit sequi?
       </p>
-
       <NavLink to="/bucket">
         <Button
           variant="contained"

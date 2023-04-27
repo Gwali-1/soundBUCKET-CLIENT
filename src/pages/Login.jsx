@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-router-dom";
+import { Form, useFetcher } from "react-router-dom";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -16,9 +16,19 @@ import Stack from "@mui/material/Stack";
 import loginSvg from "../assets/DumpingDoodle.svg";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { redirect } from "react-router-dom";
+
+//action
+export const loginAction = async ({ request }) => {
+  const form = await request.formData();
+  const formData = Object.fromEntries(form);
+  console.log(formData);
+  return null;
+};
 
 function Login() {
   //state
+  const fetcher = useFetcher();
   const [showPassword, setShowPassword] = useState(false);
   //functions
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -48,7 +58,7 @@ function Login() {
             margin: "40px 0px 0px 0px",
           }}
         >
-          <Form method="post">
+          <fetcher.Form method="post">
             <FormControl
               sx={{ m: 1, margin: "0px auto 30px auto", width: "80%" }}
             >
@@ -95,7 +105,7 @@ function Login() {
             >
               Login
             </Button>
-          </Form>
+          </fetcher.Form>
         </Stack>
       </div>
     </div>
