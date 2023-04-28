@@ -13,6 +13,7 @@ import Splash, { MainLoader } from "./pages/splash";
 import Login, { loginAction } from "./pages/Login";
 import Signup, { signupAction } from "./pages/Signup";
 import Error from "./pages/Error";
+import Bucket, { bucketAction, bucketLoader } from "./pages/Bucket";
 
 //router
 const router = createBrowserRouter([
@@ -40,7 +41,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/bucket",
-    element: <h1>about</h1>,
+    element: <Bucket />,
+    errorElement: <Error />,
+    action: bucketAction,
+    loader: bucketLoader,
   },
 ]);
 

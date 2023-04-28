@@ -16,14 +16,37 @@ import Stack from "@mui/material/Stack";
 import loginSvg from "../assets/DumpingDoodle.svg";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { toast } from "react-toastify";
 import { redirect } from "react-router-dom";
+import { getTokenId, setTokenId } from "../utility";
 
 //action
 export const loginAction = async ({ request }) => {
   const form = await request.formData();
-  const formData = Object.fromEntries(form);
-  console.log(formData);
-  return null;
+  const { _action, ...formData } = Object.fromEntries(form);
+
+  fetch("http://127.0.0.1:8000/user/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `username=${formData.username}&&password=${formData.password}`,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("invalid credentials");
+      }
+      return response.json();
+    })
+    .then((responseData) => {
+      toast.success("Welcome");
+      setTokenId(responseData.access_token);
+    })
+    .catch((err) => {
+      console.log(err);
+      toast.error("Invalid Username or Password");
+    });
+  return redirect("/bucket");
 };
 
 function Login() {
@@ -93,6 +116,8 @@ function Login() {
                 }
               />
             </FormControl>
+            <input type="hidden" name="_action" value="login" />
+
             <Button
               type="submit"
               variant="contained"
