@@ -1,5 +1,6 @@
 import React from "react";
-import { redirect } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
+
 import Login from "./Login";
 import NavbarComponent from "../components/NavbarComponet";
 import { toast } from "react-toastify";
@@ -23,12 +24,8 @@ export const bucketLoader = async function () {
     }
     console.log("valid");
 
-    return null;
+    return "true";
   }
-
-  // get user info
-
-  // get  bucket songs
 };
 
 //action
@@ -62,6 +59,8 @@ export const bucketAction = async ({ request }) => {
 let man = false;
 
 function Bucket() {
+  const loadDAte = useLoaderData();
+  console.log(loadDAte);
   return (
     <>
       {man ? (
