@@ -25,27 +25,24 @@ export const loginAction = async ({ request }) => {
   const form = await request.formData();
   const { _action, ...formData } = Object.fromEntries(form);
 
-  fetch("http://127.0.0.1:8000/user/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: `username=${formData.username}&&password=${formData.password}`,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("invalid credentials");
-      }
-      return response.json();
-    })
-    .then((responseData) => {
-      toast.success("Welcome");
-      setTokenId(responseData.access_token);
-    })
-    .catch((err) => {
-      console.log(err);
-      toast.error("Invalid Username or Password");
+  try {
+    const response = await fetch("http://127.0.0.1:8000/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `username=${formData.username}&&password=${formData.password}`,
     });
+    if (!response.ok) {
+      throw new Error("invalid credentials");
+    }
+    const responseData = await response.json();
+    toast.success("Welcome");
+    setTokenId(responseData.access_token);
+  } catch (err) {
+    console.log(err);
+    toast.error("Invalid Username or Password");
+  }
   return redirect("/bucket");
 };
 
