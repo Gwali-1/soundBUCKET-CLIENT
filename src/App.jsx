@@ -8,7 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Main from "./pages/Main";
+import Main, { mainLoader } from "./pages/Main";
 import Splash, { MainLoader } from "./pages/splash";
 import Login, { loginAction } from "./pages/Login";
 import Signup, { signupAction } from "./pages/Signup";
@@ -21,6 +21,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Main />,
     errorElement: <Error />,
+    loader: mainLoader,
     children: [
       {
         index: true,

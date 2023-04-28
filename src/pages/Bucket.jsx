@@ -59,17 +59,18 @@ export const bucketAction = async ({ request }) => {
 let man = false;
 
 function Bucket() {
-  const loadDAte = useLoaderData();
-  console.log(loadDAte);
+  const loadDAta = useLoaderData();
+  console.log(loadDAta);
+
   return (
     <>
-      {man ? (
-        <p>logged in</p>
-      ) : (
+      {loadDAta === null ? (
         <div className="container">
           <NavbarComponent />
           <Login />
         </div>
+      ) : (
+        <p>logged in</p>
       )}
     </>
   );
