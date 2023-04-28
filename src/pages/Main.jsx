@@ -1,7 +1,8 @@
 import React from "react";
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData, redirect } from "react-router-dom";
 import NavbarComponent from "../components/NavbarComponet";
-import { getTokenId, verifyToken, clearToken } from "../utility";
+import { getTokenId, verifyToken, clearToken, getUserInfo } from "../utility";
+import { toast } from "react-toastify";
 
 export const mainLoader = async function () {
   // veriify token
@@ -16,7 +17,12 @@ export const mainLoader = async function () {
       return false;
     }
 
-    return true;
+    const userInfo = await getUserInfo(token);
+    if (!userInfo) {
+      redirect("/");
+    }
+
+    return { userInfo };
   }
 };
 

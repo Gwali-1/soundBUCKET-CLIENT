@@ -27,13 +27,30 @@ export const verifyToken = async function (token) {
         },
       }
     );
-    if (response.ok) {
-      console.log("ok");
-      return true;
-    } else {
-      console.log("not");
+    if (!response.ok) {
       return false;
     }
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const getUserInfo = async function (token) {
+  if (!verifyToken(token)) {
+    return false;
+  }
+
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8000/user/user_info?token=${token}`
+    );
+    if (!response.ok) {
+      return false;
+    }
+
+    return response.json();
   } catch (err) {
     console.log(err);
     return false;

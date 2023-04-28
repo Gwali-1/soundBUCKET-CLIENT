@@ -16,14 +16,10 @@ export const bucketLoader = async function () {
     return null;
   } else {
     const valid = await verifyToken(token);
-    console.log(valid);
     if (!valid) {
-      console.log("invalid");
       clearToken();
       return null;
     }
-    console.log("valid");
-
     return "true";
   }
 };
