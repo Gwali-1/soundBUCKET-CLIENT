@@ -44,7 +44,6 @@ export const getUserInfo = async function (token) {
       `http://127.0.0.1:8000/user/user_info?token=${token}`
     );
     if (!response.ok) {
-      console.log(response);
       return false;
     }
 
@@ -90,9 +89,7 @@ export const dropSongInBucket = async function (songDetails, token) {
       headers: {
         token: token,
       },
-      body: {
-        ...songDetails,
-      },
+      body: JSON.stringify({ songDetails }),
     });
     if (!response.ok) {
       return false;
@@ -113,10 +110,9 @@ export const sportify_auth = async function () {
       console.log("re");
       const url = await response.json();
       window.location.href = url.url;
-      console.log(window.location);
     }
   } catch (err) {
-    console.log(err);
+    return false;
   }
 };
 
@@ -136,9 +132,10 @@ export const addTokenInfo = async function ({ token, code }) {
     if (!response.ok) {
       return false;
     }
-    const data = await response.json();
-    return data;
+    const responseMessage = await response.json();
+    return responseMessage;
   } catch (err) {
+    return false;
     console.log(err);
   }
 };

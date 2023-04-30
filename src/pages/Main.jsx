@@ -39,14 +39,6 @@ function Main() {
   return (
     <>
       <div className="container">
-        <button
-          onClick={async () => {
-            console.log("clicked");
-            await sportify_auth();
-          }}
-        >
-          press
-        </button>
         <NavbarComponent status={user} />
         <Outlet />
       </div>

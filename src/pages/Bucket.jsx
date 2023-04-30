@@ -12,6 +12,7 @@ import {
   addTokenInfo,
 } from "../utility";
 
+//bucket loader
 export const bucketLoader = async function () {
   console.log("bucket");
   const returnData = {};
