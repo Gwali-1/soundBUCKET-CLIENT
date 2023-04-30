@@ -13,12 +13,15 @@ export const mainLoader = async function () {
   } else {
     const valid = await verifyToken(token);
     if (!valid) {
+      toast.info("Session Expired");
       clearToken();
       return false;
     }
 
     const userInfo = await getUserInfo(token);
     if (!userInfo) {
+      clearToken();
+      toast.info("Session Expired");
       redirect("/");
     }
 
@@ -27,11 +30,11 @@ export const mainLoader = async function () {
 };
 
 function Main() {
-  const authStatus = useLoaderData();
+  const user = useLoaderData();
   return (
     <>
       <div className="container">
-        <NavbarComponent status={authStatus} />
+        <NavbarComponent status={user} />
         <Outlet />
       </div>
     </>

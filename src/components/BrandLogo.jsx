@@ -4,18 +4,19 @@ import AuthNavItems from "./AuthNavItems";
 import LogOutNavItem from "./LogOutNavItem";
 
 function BrandLogo({ status }) {
-  const [loggedInStatus, setLoggedInStatus] = useState(status);
+  const [userStatus, setUserLoggedInStatus] = useState(status);
+  console.log(status);
 
   const changeStatus = function () {
-    setLoggedInStatus((current) => !current);
+    setUserLoggedInStatus((current) => !current);
   };
   return (
     <Navbar>
       <Navbar.Brand href="/" className="text-success">
         soundBUCKET
       </Navbar.Brand>
-      {loggedInStatus ? (
-        <LogOutNavItem logOut={changeStatus} />
+      {userStatus ? (
+        <LogOutNavItem logOut={changeStatus} userInfo={status} />
       ) : (
         <AuthNavItems />
       )}

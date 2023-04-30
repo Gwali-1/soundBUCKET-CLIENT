@@ -18,6 +18,7 @@ export const bucketLoader = async function () {
     const valid = await verifyToken(token);
     if (!valid) {
       clearToken();
+      toast.info("Session Expired");
       return null;
     }
     return "true";
