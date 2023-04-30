@@ -29,14 +29,9 @@ export const signupAction = async ({ request }) => {
       if (!response.ok) {
         throw new Error("invalid credentials");
       }
-      return response.json();
-    })
-    .then((responseData) => {
       toast.success("Account Created");
-      return redirect("/login");
     })
     .catch((err) => {
-      console.log(err);
       toast.warning("Account Was Not Created");
     });
   return redirect("/login");
@@ -154,9 +149,6 @@ function Signup() {
               size="large"
               width="70px"
               sx={{ bgcolor: "#767676", mt: 2 }}
-              onClick={() => {
-                console.log("clicked");
-              }}
             >
               SignUp
             </Button>

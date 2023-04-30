@@ -40,7 +40,6 @@ export const loginAction = async ({ request }) => {
     toast.success("Welcome");
     setTokenId(responseData.access_token);
   } catch (err) {
-    console.log(err);
     toast.error("Invalid Username or Password");
   }
   return redirect("/bucket");
@@ -121,9 +120,6 @@ function Login() {
               size="large"
               width="70px"
               sx={{ bgcolor: "#767676", mt: 2 }}
-              onClick={() => {
-                console.log("clicked");
-              }}
             >
               Login
             </Button>

@@ -8,7 +8,6 @@ export const mainLoader = async function () {
   // veriify token
   const token = getTokenId();
   if (!token) {
-    clearToken();
     return false;
   } else {
     const valid = await verifyToken(token);

@@ -5,11 +5,11 @@ import LogOutNavItem from "./LogOutNavItem";
 
 function BrandLogo({ status }) {
   const [userStatus, setUserLoggedInStatus] = useState(status);
-  console.log(status);
 
   const changeStatus = function () {
     setUserLoggedInStatus((current) => !current);
   };
+
   return (
     <Navbar>
       <Navbar.Brand href="/" className="text-success">
