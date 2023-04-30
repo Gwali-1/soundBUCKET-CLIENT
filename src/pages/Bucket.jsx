@@ -1,10 +1,16 @@
 import React from "react";
-import { redirect, useLoaderData } from "react-router-dom";
+import { redirect, useLoaderData, Outlet } from "react-router-dom";
 
 import Login from "./Login";
 import NavbarComponent from "../components/NavbarComponet";
 import { toast } from "react-toastify";
-import { setTokenId, getTokenId, verifyToken, clearToken } from "../utility";
+import {
+  setTokenId,
+  getTokenId,
+  verifyToken,
+  clearToken,
+  addTokenInfo,
+} from "../utility";
 
 export const bucketLoader = async function () {
   console.log("bucket");
@@ -24,7 +30,19 @@ export const bucketLoader = async function () {
     return "true";
   }
 };
-
+//authorizer
+export const codeLoader = async () => {
+  console.log("code route");
+  const searchParams = new URLSearchParams(window.location.search);
+  const code = searchParams.get("code");
+  const token = getTokenId();
+  const authorized = await addTokenInfo({ code, token });
+  if (!authorized) {
+    toast.info("Sportify Authorizaton failed");
+  }
+  toast.success(authorized.message);
+  return redirect("/bucket");
+};
 //action
 export const bucketAction = async ({ request }) => {
   const form = await request.formData();
@@ -61,6 +79,7 @@ function Bucket() {
 
   return (
     <>
+      <Outlet />
       {loadDAta === null ? (
         <div className="container">
           <NavbarComponent />

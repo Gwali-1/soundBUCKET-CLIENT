@@ -1,7 +1,13 @@
 import React from "react";
 import { Outlet, useLoaderData, redirect } from "react-router-dom";
 import NavbarComponent from "../components/NavbarComponet";
-import { getTokenId, verifyToken, clearToken, getUserInfo } from "../utility";
+import {
+  getTokenId,
+  verifyToken,
+  clearToken,
+  getUserInfo,
+  sportify_auth,
+} from "../utility";
 import { toast } from "react-toastify";
 
 export const mainLoader = async function () {
@@ -33,6 +39,14 @@ function Main() {
   return (
     <>
       <div className="container">
+        <button
+          onClick={async () => {
+            console.log("clicked");
+            await sportify_auth();
+          }}
+        >
+          press
+        </button>
         <NavbarComponent status={user} />
         <Outlet />
       </div>

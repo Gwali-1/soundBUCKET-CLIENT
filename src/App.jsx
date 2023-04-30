@@ -13,7 +13,7 @@ import Splash, { MainLoader } from "./pages/splash";
 import Login, { loginAction } from "./pages/Login";
 import Signup, { signupAction } from "./pages/Signup";
 import Error from "./pages/Error";
-import Bucket, { bucketAction, bucketLoader } from "./pages/Bucket";
+import Bucket, { bucketAction, bucketLoader, codeLoader } from "./pages/Bucket";
 
 //router
 const router = createBrowserRouter([
@@ -46,6 +46,12 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     action: bucketAction,
     loader: bucketLoader,
+    children: [
+      {
+        path: "code",
+        loader: codeLoader,
+      },
+    ],
   },
 ]);
 
