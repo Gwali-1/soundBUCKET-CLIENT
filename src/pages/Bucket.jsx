@@ -12,6 +12,7 @@ import {
   addTokenInfo,
   getUserInfo,
 } from "../utility";
+import BucketContent from "../components/BucketContent";
 
 //bucket loader
 export const bucketLoader = async function () {
@@ -89,7 +90,7 @@ function Bucket() {
         </div>
       ) : (
         <div className="container">
-          <p>Logged in</p>
+          <BucketContent />
         </div>
       )}
     </>
