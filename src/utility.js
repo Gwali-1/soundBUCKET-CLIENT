@@ -117,8 +117,6 @@ export const sportify_auth = async function () {
 };
 
 export const addTokenInfo = async function ({ token, code }) {
-  const data = { code: code };
-  console.log(data);
   try {
     const response = await fetch(
       `http://127.0.0.1:8000/sportify/add_token_info?code=${code}`,

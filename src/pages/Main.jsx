@@ -30,7 +30,7 @@ export const mainLoader = async function () {
       redirect("/");
     }
 
-    return { userInfo };
+    return userInfo;
   }
 };
 

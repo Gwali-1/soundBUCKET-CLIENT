@@ -15,7 +15,7 @@ function LogOutNavItem({ logOut, userInfo }) {
       <Nav className="me-auto">
         <Nav.Link className="text-secondary">
           <Person4Icon />
-          {userInfo.userInfo.username}
+          {userInfo.username}
         </Nav.Link>
         <Nav.Link className="text-danger" onClick={logUserOut}>
           Log Out

@@ -10,6 +10,7 @@ import {
   verifyToken,
   clearToken,
   addTokenInfo,
+  getUserInfo,
 } from "../utility";
 
 //bucket loader
@@ -28,7 +29,8 @@ export const bucketLoader = async function () {
       toast.info("Session Expired");
       return null;
     }
-    return "true";
+
+    return true;
   }
 };
 //authorizer
@@ -62,21 +64,20 @@ export const bucketAction = async ({ request }) => {
       throw new Error("invalid credentials");
     }
     const responseData = await response.json();
-    console.log(responseData);
     toast.success("Welcome");
     setTokenId(responseData.access_token);
   } catch (err) {
     console.log(err);
     toast.error("Invalid Username or Password");
   }
-  return null;
+
+  return redirect("/");
 };
 
 let man = false;
 
 function Bucket() {
   const loadDAta = useLoaderData();
-  console.log(loadDAta);
 
   return (
     <>
@@ -87,7 +88,9 @@ function Bucket() {
           <Login />
         </div>
       ) : (
-        <p>logged in</p>
+        <div className="container">
+          <p>Logged in</p>
+        </div>
       )}
     </>
   );
