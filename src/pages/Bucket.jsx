@@ -10,7 +10,6 @@ import {
   verifyToken,
   clearToken,
   addTokenInfo,
-  getUserInfo,
 } from "../utility";
 import BucketContent from "../components/BucketContent";
 
@@ -65,17 +64,14 @@ export const bucketAction = async ({ request }) => {
       throw new Error("invalid credentials");
     }
     const responseData = await response.json();
-    toast.success("Welcome");
     setTokenId(responseData.access_token);
+    toast.success("Welcome");
   } catch (err) {
-    console.log(err);
     toast.error("Invalid Username or Password");
   }
 
-  return redirect("/");
+  return null;
 };
-
-let man = false;
 
 function Bucket() {
   const loadDAta = useLoaderData();
