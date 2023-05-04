@@ -10,8 +10,18 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 //search song
+
+//add song to bucket
+const addToBucket = async function (event) {
+  event.preventDefault();
+  const form = new FormData(event.target);
+  const formData = Object.fromEntries(form);
+  console.log(formData);
+};
 
 function BucketActions() {
   const [value, setValue] = React.useState(0);
@@ -44,17 +54,37 @@ function BucketActions() {
                 });
             }}
           />
-
-          <div className="p-2 border">
-            {songs &&
-              songs.map((song) => {
+          {songs && (
+            <div className="border">
+              {songs.map((song) => {
                 return (
-                  <li>
-                    {song.title}-{song.artist_name}
-                  </li>
+                  <form
+                    action=""
+                    className="row"
+                    onSubmit={addToBucket}
+                    key={song.song_id}
+                  >
+                    <div className="col-8">
+                      <input type="hidden" name="ulr" />
+                      <input type="hidden" name="age" />
+                      <input type="hidden" name="many" />
+                      <div>
+                        <img src={song.cover_art_url} alt="" width={30} />
+                        {song.title}-{song.artist_name}
+                      </div>
+                    </div>
+                    <div className="col-4 bg">
+                      <button className="border-none">
+                        <Fab color="success" aria-label="add" size="small">
+                          <AddIcon />
+                        </Fab>
+                      </button>
+                    </div>
+                  </form>
                 );
               })}
-          </div>
+            </div>
+          )}
         </Box>
       )}
 
