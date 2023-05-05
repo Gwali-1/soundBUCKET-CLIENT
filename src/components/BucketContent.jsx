@@ -47,7 +47,7 @@ function BucketContent() {
           </ListItem>
         ))}
       </List> */}
-      <BucketActions bucketName={"name"} />
+      <BucketActions bucketId={1} />
     </div>
   );
 }

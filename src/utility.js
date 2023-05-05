@@ -84,19 +84,22 @@ export const getBucket = async function ({ bucketName, token }) {
 //songs
 export const dropSongInBucket = async function (songDetails, token) {
   try {
-    response = await fetch(`http://127.0.0.1:8000/songs/add_to_bucket`, {
+    const response = await fetch(`http://127.0.0.1:8000/songs/add_to_bucket`, {
       method: "POST",
       headers: {
-        token: token,
+        "x-token": token,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ songDetails }),
+      body: JSON.stringify(songDetails),
     });
     if (!response.ok) {
+      console.log(await response.json());
       return false;
     }
 
     return await response.json();
   } catch (err) {
+    console.log(err);
     return false;
   }
 };

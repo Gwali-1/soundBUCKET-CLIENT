@@ -10,20 +10,14 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-
+import { redirect } from "react-router-dom";
 import TrackDisplay from "./TrackDisplay";
 
 //search song
 
 //add song to bucket
-const addToBucket = async function (event) {
-  event.preventDefault();
-  const form = new FormData(event.target);
-  const formData = Object.fromEntries(form);
-  console.log(formData);
-};
 
-function BucketActions() {
+function BucketActions({ bucketId }) {
   const [value, setValue] = React.useState(0);
   const [songs, setSongs] = React.useState(null);
   return (
@@ -47,6 +41,7 @@ function BucketActions() {
               )
                 .then((response) => response.json())
                 .then((result) => {
+                  console.log(result);
                   setSongs(result);
                 })
                 .catch((err) => {
@@ -61,7 +56,8 @@ function BucketActions() {
                   <TrackDisplay
                     key={song.song_id}
                     track={song}
-                    addToBucket={addToBucket}
+                    setValue={setValue}
+                    bucketId={bucketId}
                   />
                 );
               })}
