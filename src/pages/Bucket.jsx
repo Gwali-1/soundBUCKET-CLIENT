@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { redirect, useLoaderData, Outlet } from "react-router-dom";
 
 import Login from "./Login";
@@ -20,6 +20,9 @@ export const bucketLoader = async function () {
   const returnData = {};
   // veriify token
   const token = getTokenId();
+  if (!token) {
+    return null;
+  }
   const valid = await verifyToken(token);
   if (!valid) {
     clearToken();
@@ -31,7 +34,7 @@ export const bucketLoader = async function () {
   if (!userInfo) {
     return null;
   }
-
+  console.log("hh");
   return userInfo;
 };
 //authorizer
@@ -70,24 +73,23 @@ export const bucketAction = async ({ request }) => {
   } catch (err) {
     toast.error("Invalid Username or Password");
   }
-
   return null;
 };
 
 function Bucket() {
-  const userInfo = useLoaderData();
+  const [userStatus, setUserStatus] = useState(useLoaderData());
 
   return (
     <>
       <Outlet />
-      {userInfo === null ? (
+      {userStatus === null ? (
         <div className="container">
           <NavbarComponent />
           <Login />
         </div>
       ) : (
         <div className="container">
-          <BucketContent userInfo={userInfo} />
+          <BucketContent userInfo={userStatus} setUserStatus={setUserStatus} />
         </div>
       )}
     </>

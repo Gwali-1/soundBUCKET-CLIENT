@@ -17,7 +17,7 @@ import TrackDisplay from "./TrackDisplay";
 
 //add song to bucket
 
-function BucketActions({ bucketId }) {
+function BucketActions({ bucketId, setUserStatus }) {
   const [value, setValue] = React.useState(0);
   const [songs, setSongs] = React.useState(null);
   return (
@@ -58,6 +58,7 @@ function BucketActions({ bucketId }) {
                     track={song}
                     setValue={setValue}
                     bucketId={bucketId}
+                    setUserStatus={setUserStatus}
                   />
                 );
               })}

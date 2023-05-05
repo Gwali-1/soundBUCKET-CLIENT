@@ -13,6 +13,9 @@ import { toast } from "react-toastify";
 export const mainLoader = async function () {
   // veriify token
   const token = getTokenId();
+  if (!token) {
+    return null;
+  }
   const valid = await verifyToken(token);
   if (!valid) {
     toast.info("Session Expired");

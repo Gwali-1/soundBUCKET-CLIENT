@@ -8,25 +8,24 @@ import {
   verifyToken,
 } from "../utility";
 import { toast } from "react-toastify";
-function TrackDisplay({ track, setValue, bucketId }) {
+function TrackDisplay({ track, setValue, bucketId, setUserStatus }) {
   //
   const addToBucket = async function (event) {
     event.preventDefault();
     const form = new FormData(event.target);
     const songDetails = Object.fromEntries(form);
-    console.log(songDetails);
     const token = getTokenId();
     const validToken = await verifyToken(token);
     if (!validToken) {
       clearToken();
       toast.info("Session Expired");
-      setValue(0);
+      setUserStatus(null);
       return;
     }
     const response = await dropSongInBucket(songDetails, token);
     if (!response) {
       toast.info("Could not add song at this time");
-      redirect("/bucket");
+      setValue(0);
       return;
     }
 

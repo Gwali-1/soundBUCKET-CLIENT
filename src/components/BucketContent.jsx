@@ -10,7 +10,7 @@ import NavbarComponent from "./NavbarComponet";
 import { getTokenId, verifyToken, clearToken, getUserInfo } from "../utility";
 import { toast } from "react-toastify";
 
-function BucketContent({ userInfo }) {
+function BucketContent({ userInfo, setUserStatus }) {
   //useffect to get user info ,  buckets
   //   const [messages, setMessages] = React.useState(messageExamples);
   const [user, setUser] = useState(null);
@@ -48,7 +48,7 @@ function BucketContent({ userInfo }) {
           </ListItem>
         ))}
       </List> */}
-      <BucketActions bucketId={1} />
+      <BucketActions bucketId={1} setUserStatus={setUserStatus} />
     </div>
   );
 }
