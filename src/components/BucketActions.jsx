@@ -10,8 +10,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
+
+import TrackDisplay from "./TrackDisplay";
 
 //search song
 
@@ -58,29 +58,11 @@ function BucketActions() {
             <div className="border">
               {songs.map((song) => {
                 return (
-                  <form
-                    action=""
-                    className="row"
-                    onSubmit={addToBucket}
+                  <TrackDisplay
                     key={song.song_id}
-                  >
-                    <div className="col-8">
-                      <input type="hidden" name="ulr" />
-                      <input type="hidden" name="age" />
-                      <input type="hidden" name="many" />
-                      <div>
-                        <img src={song.cover_art_url} alt="" width={30} />
-                        {song.title}-{song.artist_name}
-                      </div>
-                    </div>
-                    <div className="col-4 bg">
-                      <button className="border-none">
-                        <Fab color="success" aria-label="add" size="small">
-                          <AddIcon />
-                        </Fab>
-                      </button>
-                    </div>
-                  </form>
+                    track={song}
+                    addToBucket={addToBucket}
+                  />
                 );
               })}
             </div>
