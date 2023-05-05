@@ -10,6 +10,7 @@ import {
   verifyToken,
   clearToken,
   addTokenInfo,
+  getUserInfo,
 } from "../utility";
 import BucketContent from "../components/BucketContent";
 
@@ -19,19 +20,19 @@ export const bucketLoader = async function () {
   const returnData = {};
   // veriify token
   const token = getTokenId();
-  if (!token) {
+  const valid = await verifyToken(token);
+  if (!valid) {
     clearToken();
+    toast.info("Session Expired");
     return null;
-  } else {
-    const valid = await verifyToken(token);
-    if (!valid) {
-      clearToken();
-      toast.info("Session Expired");
-      return null;
-    }
-
-    return true;
   }
+
+  const userInfo = await getUserInfo(token);
+  if (!userInfo) {
+    return null;
+  }
+
+  return userInfo;
 };
 //authorizer
 export const codeLoader = async () => {
@@ -74,19 +75,19 @@ export const bucketAction = async ({ request }) => {
 };
 
 function Bucket() {
-  const loadDAta = useLoaderData();
+  const userInfo = useLoaderData();
 
   return (
     <>
       <Outlet />
-      {loadDAta === null ? (
+      {userInfo === null ? (
         <div className="container">
           <NavbarComponent />
           <Login />
         </div>
       ) : (
         <div className="container">
-          <BucketContent />
+          <BucketContent userInfo={userInfo} />
         </div>
       )}
     </>

@@ -7,17 +7,18 @@ import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import NavbarComponent from "./NavbarComponet";
+import { getTokenId, verifyToken, clearToken, getUserInfo } from "../utility";
+import { toast } from "react-toastify";
 
-function BucketContent() {
+function BucketContent({ userInfo }) {
   //useffect to get user info ,  buckets
   //   const [messages, setMessages] = React.useState(messageExamples);
-  const user = {
-    username: "frank",
-  };
+  const [user, setUser] = useState(null);
+  const [bucketInfo, setBucketInfo] = useState(null);
 
   return (
     <div className="container  ">
-      <NavbarComponent status={user} />
+      <NavbarComponent userInfo={userInfo} />
       <div className="container ">
         <Typography
           variant="h2"

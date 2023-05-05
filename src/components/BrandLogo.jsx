@@ -3,8 +3,8 @@ import Navbar from "react-bootstrap/Navbar";
 import AuthNavItems from "./AuthNavItems";
 import LogOutNavItem from "./LogOutNavItem";
 
-function BrandLogo({ status }) {
-  const [userStatus, setUserLoggedInStatus] = useState(status);
+function BrandLogo({ userInfo }) {
+  const [userStatus, setUserLoggedInStatus] = useState(userInfo);
 
   const changeStatus = function () {
     setUserLoggedInStatus((current) => !current);
@@ -16,7 +16,7 @@ function BrandLogo({ status }) {
         soundBUCKET
       </Navbar.Brand>
       {userStatus ? (
-        <LogOutNavItem logOut={changeStatus} userInfo={status} />
+        <LogOutNavItem logOut={changeStatus} userInfo={userInfo} />
       ) : (
         <AuthNavItems />
       )}
