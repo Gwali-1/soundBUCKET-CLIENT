@@ -82,16 +82,9 @@ function Bucket() {
   return (
     <>
       <Outlet />
-      {userStatus === null ? (
-        <div className="container">
-          <NavbarComponent />
-          <Login />
-        </div>
-      ) : (
-        <div className="container">
-          <BucketContent userInfo={userStatus} setUserStatus={setUserStatus} />
-        </div>
-      )}
+      <div className="container">
+        <BucketContent userInfo={userStatus} setUserStatus={setUserStatus} />
+      </div>
     </>
   );
 }

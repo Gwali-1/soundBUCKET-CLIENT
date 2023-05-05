@@ -38,7 +38,7 @@ function Main() {
   return (
     <>
       <div className="container">
-        <NavbarComponent status={user} />
+        <NavbarComponent userInfo={user} />
         <Outlet />
       </div>
     </>

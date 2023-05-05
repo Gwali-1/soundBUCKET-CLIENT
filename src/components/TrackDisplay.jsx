@@ -28,7 +28,6 @@ function TrackDisplay({ track, setValue, bucketId, setUserStatus }) {
       setValue(0);
       return;
     }
-
     toast.success("Added To Bucket");
     console.log(response);
   };

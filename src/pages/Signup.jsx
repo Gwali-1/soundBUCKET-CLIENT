@@ -18,22 +18,23 @@ export const signupAction = async ({ request }) => {
   const form = await request.formData();
   const formData = Object.fromEntries(form);
   //creatE user account
-  fetch("http://127.0.0.1:8000/user/create", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("invalid credentials");
-      }
-      toast.success("Account Created");
-    })
-    .catch((err) => {
-      toast.warning("Account Was Not Created");
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/user/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     });
+    if (!response.ok) {
+      throw new Error("invalid credentials");
+    }
+    toast.success("Account Created");
+  } catch (err) {
+    toast.warning("Account Was Not Created");
+    return null;
+  }
   return redirect("/login");
 };
 

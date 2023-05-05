@@ -41,6 +41,7 @@ export const loginAction = async ({ request }) => {
     setTokenId(responseData.access_token);
   } catch (err) {
     toast.error("Invalid Username or Password");
+    return null;
   }
   return redirect("/bucket");
 };
